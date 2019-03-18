@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+      <div class="container">
+              <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                  <div class="col-4 pt-1">
+                    <a class="text-muted" href="{% url 'home' %}">HOME</a>
+                  </div>
+                  
+                  <div class="col-4 d-flex justify-content-end align-items-center">
+                    
+                    <a class="btn btn-sm btn-outline-secondary" href="http://127.0.0.1:8000/admin/">ADMIN LOGIN</a>
+                  </div>
+                </div>
+              </header>
+{% endblock nav %}
+    
+{% block main %}
+
+    
+<div class="row mb-1">
+        <div class="col-md-12">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                  <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">{{ detail.Genre }}</strong>
+                    <h3 class="mb-0">{{detail.Name}}</h3>
+                    <div class="mb-1 text-muted">5</div>
+                    <p class="card-text mb-auto">{{ detail.Review }}</p>
+                  </div>
+                  <div class="col-auto d-none d-lg-block">
+                    
+                    {% if detail.Image %}   
+                   <img src="{{ detail.Image.url }}" width="250" height="250" alt="">
+                   {% endif %}
+                  </div>
+                </div>
+                <p>
+
+        <a href="{% url 'home'  %}" class="btn btn-outline-secondary my-2">back</a>
+
+      </p>
+         </div>
+ </div>
+
+ {% endblock main %}

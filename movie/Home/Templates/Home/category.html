@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    
+<div class="row mb-2">
+    {% for cat in category.all %}
+    <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <h3 class="mb-0">{{cat.name}}</h3>
+                {% for item in Category.item_set.all %}
+                <div class="mb-1 text-muted">5</div>
+                <p class="card-text mb-auto">{{ move.Review }}</p>
+                <a href="{% url 'detail' item.id %}" class="stretched-link">read more</a>
+              </div>
+
+              <div class="col-auto d-none d-lg-block">  
+                {% if item.Image %}   
+               <img src="{{ item.Image.url}}" width="250" height="250" alt="">
+               <h5 style="font-size:10px">{{item.Category}}</h5>
+               {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+     </div>
+    {% endfor %}
+</div>
+{% endblock main %}

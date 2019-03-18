@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      {% load static %}
+      
+      {% block title %}
+      <title>Base</title>  
+      {% endblock title %}
+          
+      <link rel="stylesheet" href="{% static 'Home/css/bootstrap.min.css' %}">
+      <style>
+            .bd-placeholder-img {
+              font-size: 1.125rem;
+              text-anchor: middle;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+          </style>
+          
+        </head>
+  
+        {% block nav %}
+        
+        {% endblock nav %}
+           
+         <body class="bg-light">
+      {% block body %}
+
+       {% block main %}
+       {% endblock main %}
+            
+        
+        <footer class="blog-footer">
+          <p>Movie webapplication for <a href="#">PUBLIC</a> by <a href="#">IT-A2</a>.</p>
+          <p>
+            <a href="#">Back to top</a>
+          </p>
+        </footer>
+      {% endblock body %}
+          
+       
+    
+
+
+<script src="{% static  'Home/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'Home/popper.min.js' %}"></script>
+<script src="{% static 'Home/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
