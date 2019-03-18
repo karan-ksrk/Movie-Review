@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Movies, category
 from django.core.files.storage import FileSystemStorage
+from django.utils.datastructures import MultiValueDictKeyError
+
 
 
 # Create your views here.
@@ -21,8 +23,10 @@ def submission(request):
         Directors = request.POST['director']
         Genres = request.POST['genre']
         Reviews = request.POST['review']
-        movieinfo = Movies(Name=Names,Image=image,Subtitle=Subtitles,Director=Directors,Genre=Genres,Review=Reviews)
+        Categorys = request.POST['category']
+        movieinfo = Movies(Name=Names,Image=image,Subtitle=Subtitles,Director=Directors,Genre=Genres,Review=Reviews, Category=category.objects.get(id=Categorys))
         movieinfo.save()
+
     return render(request, 'Home/addmovie.html')
 
 def detail(request, movie_id):
@@ -33,5 +37,6 @@ def detail(request, movie_id):
 def Category(request, cat_id):
     Category = get_object_or_404(category.objects, pk=cat_id)
     return render(request, 'Home/category.html',{'category':Category})
+
 
 
