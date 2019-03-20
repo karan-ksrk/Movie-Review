@@ -1,28 +1,79 @@
 {% extends 'base.html' %}
+{% block nav %}
+<div class="container">
+    <header class="blog-header py-3">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+         
+          
+          <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a> 
+                
+                {% else %}
+                <a class="nav-link" href="{% url 'login'  %}">login <span class="sr-only">(current)</span></a>
+                {% endif %}
+              </li>
 
-{% block main %}
-    
-<div class="row mb-2">
-    {% for cat in category.all %}
-    <div class="col-md-6">
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div class="col p-4 d-flex flex-column position-static">
-                <h3 class="mb-0">{{cat.name}}</h3>
-                {% for item in Category.item_set.all %}
-                <div class="mb-1 text-muted">5</div>
-                <p class="card-text mb-auto">{{ move.Review }}</p>
-                <a href="{% url 'detail' item.id %}" class="stretched-link">read more</a>
-              </div>
-
-              <div class="col-auto d-none d-lg-block">  
-                {% if item.Image %}   
-               <img src="{{ item.Image.url}}" width="250" height="250" alt="">
-               <h5 style="font-size:10px">{{item.Category}}</h5>
-               {% endif %}
-              </div>
-              {% endfor %}
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                 
+                <a class="nav-link" href="{% url 'addmovie' %}">ADD MOVIES</a>
+                
+              </li>
+              {% endif %}
+              
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown07">
+                  <a class="dropdown-item" href="{% url 'category' 2 %}">Hollywood</a>
+                  <a class="dropdown-item" href="{% url 'category' 1  %}">Bollywood</a>
+                </div>
+              </li>
+             
+            </ul>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                            
+              <a class="btn btn-sm btn-outline-secondary" href="http://127.0.0.1:8000/admin/">ADMIN LOGIN</a>
             </div>
-     </div>
-    {% endfor %}
-</div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+{% endblock nav %}
+{% block main %}
+
+
+<div class="row mb-2">
+    {% for item  in categorys.movies_set.all %}
+      <div class="col-md-6">
+           
+         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                  <strong class="d-inline-block mb-2 text-primary">{{ item.Genre }}</strong>
+                  <h3 class="mb-0">{{item.Name}}</h3>
+                  <div class="mb-1 text-muted">5</div>
+                  <p class="card-text mb-auto">{{ item.Review }}</p>
+                  <a href="{% url 'detail' item.id %}" class="stretched-link">read more</a>
+                </div>
+
+                <div class="col-auto d-none d-lg-block">  
+                  {% if item.Image %}   
+                 <img src="{{ item.Image.url}}" width="250" height="250" alt="">
+                 <h5 style="font-size:10px">{{item.Category}}</h5>
+                 {% endif %}
+                </div>
+               </div>
+       </div>
+       {% endfor %}
+        </div>
+
 {% endblock main %}

@@ -11,7 +11,7 @@ urlpatterns = [
     path('detail/<int:movie_id>', views.detail, name='detail'),
     path('login', LoginView.as_view(), name='login'), 
     path('logout', LogoutView.as_view(), name='logout'), 
-    #path('category/<int:cat_id>', views.Category, name='category'),
+    path('category/<int:cat_id>', views.Categorys, name='category'),
     
   
 ]

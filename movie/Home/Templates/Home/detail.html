@@ -37,7 +37,7 @@
                 </div>
                 <p>
 
-        <a href="{% url 'home'  %}" class="btn btn-outline-secondary my-2">back</a>
+        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-outline-secondary my-2">back</a>
 
       </p>
          </div>

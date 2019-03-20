@@ -34,9 +34,10 @@ def detail(request, movie_id):
     return render(request, 'Home/detail.html', {'detail':movies})
 
 
-def Category(request, cat_id):
-    Category = get_object_or_404(category.objects, pk=cat_id)
-    return render(request, 'Home/category.html',{'category':Category})
+def Categorys(request, cat_id):
+    #Category = get_object_or_404(category.objects, pk=cat_id)
+    Category = category.objects.get(id=cat_id)
+    return render(request, 'Home/category.html',{'categorys':Category})
 
 
 
